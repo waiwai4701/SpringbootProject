@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ww.mapper.OrderMapper">
+
+    <resultMap id="BaseResultMap" type="com.ww.entity.Order">
+        <id column="ID" property="id" jdbcType="INTEGER" />
+        <result column="NO" jdbcType="VARCHAR" property="NO" />
+    </resultMap>
+
+    <insert id="add" useGeneratedKeys="true" keyProperty="id" parameterType="com.ww.entity.Order">
+        insert into `order` (NO) values (#{NO,jdbcType=VARCHAR})
+    </insert>
+
+    <update id="update" parameterType="com.ww.entity.Order">
+        update `order`
+        set  NO = #{NO,jdbcType=VARCHAR}
+        where ID = #{id,jdbcType=INTEGER}
+    </update>
+
+    <delete id="delete" parameterType="java.lang.Integer">
+        delete from `order`
+        where ID = #{id,jdbcType=INTEGER}
+    </delete>
+    
+    <select id="select" resultMap="BaseResultMap">
+        select * from `order` limit 1
+    </select>
+
+    <select id="selectList" parameterType="com.ww.entity.Order" resultType="com.ww.entity.Order">
+        select * from `order`
+        WHERE 1=1
+        <if test="NO != null">
+            AND NO = #{NO}
+        </if>
+    </select>
+</mapper>
