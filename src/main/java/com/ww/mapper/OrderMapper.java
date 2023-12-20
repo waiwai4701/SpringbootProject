@@ -16,7 +16,7 @@ public interface OrderMapper {
 
     Integer delete(Integer id);
 
-    Order select();
+    Order selectById(Integer id);
 
-    List<Order> selectList(Order order);
+    List<Order> selectByParams(Order order);
 }

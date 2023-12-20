@@ -22,11 +22,11 @@
         where ID = #{id,jdbcType=INTEGER}
     </delete>
     
-    <select id="select" resultMap="BaseResultMap">
-        select * from `order` limit 1
+    <select id="selectById" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select * from `order` where id = #{id}
     </select>
 
-    <select id="selectList" parameterType="com.ww.entity.Order" resultType="com.ww.entity.Order">
+    <select id="selectByParams" parameterType="com.ww.entity.Order" resultType="java.util.Map">
         select * from `order`
         WHERE 1=1
         <if test="NO != null">

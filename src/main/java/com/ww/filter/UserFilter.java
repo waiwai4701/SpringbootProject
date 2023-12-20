@@ -1,14 +1,12 @@
 package com.ww.filter;
 
 import com.ww.entity.User;
+import com.ww.utils.Md5Util;
 import com.ww.utils.RedisUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
-import org.springframework.web.context.support.XmlWebApplicationContext;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
@@ -57,6 +55,17 @@ public class UserFilter implements Filter {
 
         if(user != null && user.getUsername().equals(username) && user.getPassword().equals(password)){
             log.info("user filter passed");
+
+            //从请求头获取用户名密码，通过md5加密放入request里，作为token
+            String token = null;
+            try {
+                token = Md5Util.getMD5(username + password);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            servletRequest.setAttribute("token", token);
+            log.info("set token :"+token);
+
             filterChain.doFilter(servletRequest,servletResponse);
         }else{
             log.info("user filter denied");

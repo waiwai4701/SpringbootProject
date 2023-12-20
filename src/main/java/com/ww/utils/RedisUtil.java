@@ -1,13 +1,18 @@
 package com.ww.utils;
 
+import org.redisson.api.RedissonClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.script.DefaultRedisScript;
+import org.springframework.data.redis.core.types.Expiration;
 import org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.RedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
+import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -732,5 +737,29 @@ public class RedisUtil {
             return 0;
         }
     }
+
+    /**
+     * 获取锁
+     * @param key
+     * @return
+     */
+//    public boolean setIfAbsent(String key,  long timeout, TimeUnit unit){
+//
+//     return redisTemplate.opsForValue().setIfAbsent(key, "true", timeout, unit);
+//
+//    }
+
+    /**
+     * 通过lua脚本执行 查询锁是当前锁和删除，确保同步
+     * @param script lua脚本
+     * @param key
+     * @return
+     */
+    public Long delByScript(String script, String key){
+        return (Long) redisTemplate.execute(new DefaultRedisScript<Long>(script, Long.class), Arrays.asList("lock"), key);
+    }
+
+
+
 
 }

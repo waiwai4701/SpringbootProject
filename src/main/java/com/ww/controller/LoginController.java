@@ -1,7 +1,7 @@
 package com.ww.controller;
 
 import com.ww.entity.User;
-import com.ww.service.LoginService;
+import com.ww.dao.LoginDao;
 import com.ww.utils.RedisUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,7 +15,7 @@ public class LoginController {
     private final static Logger log = LoggerFactory.getLogger(LoginController.class);
 
     @Autowired
-    private LoginService loginService;
+    private LoginDao loginService;
 
     @Autowired
     private RedisUtil redisUtil;

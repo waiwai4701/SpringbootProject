@@ -1,7 +1,7 @@
-com\ww\SpringbootApplication.class
 com\ww\entity\Order.class
 com\ww\mapper\OrderMapper.class
 com\ww\utils\RedisUtil.class
 com\ww\config\MyBatisConfig.class
-com\ww\service\OrderService.class
 com\ww\controller\OrderController.class
+com\ww\SpringbootApplication.class
+com\ww\service\OrderService.class
