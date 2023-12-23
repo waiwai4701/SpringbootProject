@@ -8,6 +8,7 @@ D:\workspace\SpringbootProject\src\main\java\com\ww\utils\Md5Util.java
 D:\workspace\SpringbootProject\src\main\java\com\ww\lock\RedLockUtil.java
 D:\workspace\SpringbootProject\src\main\java\com\ww\entity\User.java
 D:\workspace\SpringbootProject\src\main\java\com\ww\utils\RedisUtil.java
+D:\workspace\SpringbootProject\src\main\java\com\ww\config\RedissonConfig.java
 D:\workspace\SpringbootProject\src\main\java\com\ww\dao\OrderDao.java
 D:\workspace\SpringbootProject\src\main\java\com\ww\dao\LoginDao.java
 D:\workspace\SpringbootProject\src\main\java\com\ww\controller\LoginController.java
